@@ -79,7 +79,7 @@ class SaleImportRule(Component):
         :rtype: boolean
         """
         ps_payment_method = record["payment"]
-        mode_binder = self.binder_for("account.payment.method.line")
+        mode_binder = self.binder_for("account.payment.mode")
         payment_mode = mode_binder.to_internal(ps_payment_method)
         if not payment_mode:
             raise FailedJobError(
@@ -274,13 +274,13 @@ class SaleOrderImportMapper(Component):
 
     @mapping
     def payment(self, record):
-        binder = self.binder_for("account.payment.method.line")
+        binder = self.binder_for("account.payment.mode")
         mode = binder.to_internal(record["payment"])
         assert mode, (
             "import of error fail in SaleImportRule.check "
             "when the payment mode is missing"
         )
-        return {"payment_method_line_id": mode.id}
+        return {"payment_mode_id": mode.id}
 
     @mapping
     def carrier_id(self, record):

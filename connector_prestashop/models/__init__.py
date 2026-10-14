@@ -2,12 +2,11 @@
 from . import binding
 
 from . import account_move
-from . import payment_method
 from . import account_tax
 from . import account_tax_group
 from . import delivery_carrier
 from . import mail_message
-from . import payment
+from . import account_payment_mode
 from . import stock_warehouse
 from . import prestashop_backend
 from . import prestashop_shop_group
